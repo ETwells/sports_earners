@@ -66,7 +66,8 @@ df["Average per game/event (USD)"] = (
       .str.replace(r"[^0-9.]", "", regex=True)
       .astype(float)                    
 )
-#show the dataframe
-sports
+#custom fixes
+sports["Sport"].mask(sports["Sport"] == 'American Football', 'American football', inplace=True)
+sports["Organization"].mask(sports["Organization"] == 'Paris SaintGermain', 'Paris Saint-Germain',inplace=True)
 #import the csv
 sports.to_csv("sports_earners.csv")
