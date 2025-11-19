@@ -22,6 +22,8 @@ sports.index = range(1, df.shape[0] + 1)
 sports["Length in years"] = sports["Length of contract"].str.split('(',expand=True)[0].str.strip()
 sports["Length in years"] = sports["Length in years"].str.replace(r'[^0-9\s]','',regex=True)
 sports["Contract Period"] = sports["Length of contract"].str.extract(r'\(([^)]*)\)')
+sports["Contract Start"] = sports["Contract Period"].str.split('–',expand=True)[0].str.strip()
+sports["Contract End"] = sports["Contract Period"].str.split('–', expand=True)[1].str.strip()
 sports.drop(columns=["Length of contract","Ref.","Unnamed: 8"], inplace=True)
 sports.rename(columns={"Average per game/event[a] (USD)": "Average per game/event (USD)"},inplace=True)
 #Cleaning of the string columns
